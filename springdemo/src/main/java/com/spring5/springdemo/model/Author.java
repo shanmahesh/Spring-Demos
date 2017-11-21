@@ -22,6 +22,15 @@ public class Author {
 	private Set<Book> books = new HashSet<>();
 	
 	
+	public Author() {
+		super();
+	}
+	
+	public Author(String fistName, String lastname) {
+		super();
+		this.fistName = fistName;
+		this.lastname = lastname;
+	}
 	public Set<Book> getBooks() {
 		return books;
 	}
