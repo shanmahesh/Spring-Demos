@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
-import com.domain.base.BaseEntity;
+import  com.base.domain.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

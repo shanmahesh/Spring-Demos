@@ -3,7 +3,8 @@
  */
 package com.demographics.domain;
 
-import com.domain.base.AggregateId;
+import com.base.domain.AggregateId;
+import com.demographics.application.api.dto.PersonDto;
 
 /**
  * @author Mahesh S
@@ -11,7 +12,7 @@ import com.domain.base.AggregateId;
  */
 public class PersonFactory {
 
-	public Person createPerson(){
+	public Person createPerson(PersonDto personDto){
 		//TODO validate
 		
 		AggregateId aggregateId = AggregateId.generate();

@@ -16,7 +16,7 @@
 /**
  * 
  */
-package com.domain.base;
+package com.base.domain;
 
 
 import javax.persistence.AttributeOverride;

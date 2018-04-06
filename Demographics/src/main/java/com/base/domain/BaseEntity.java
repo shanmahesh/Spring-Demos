@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.domain.base;
+package com.base.domain;
 
 import java.util.Date;
 

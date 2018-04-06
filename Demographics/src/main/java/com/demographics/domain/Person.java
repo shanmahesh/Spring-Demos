@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-import com.domain.base.AggregateId;
-import com.domain.base.BaseAggregateRoot;
+import com.base.domain.AggregateId;
+import com.base.domain.BaseAggregateRoot;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

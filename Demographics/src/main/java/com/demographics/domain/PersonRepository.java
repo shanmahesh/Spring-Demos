@@ -3,7 +3,7 @@
  */
 package com.demographics.domain;
 
-import com.domain.base.AggregateId;
+import com.base.domain.AggregateId;
 
 /**
  * @author Mahesh S

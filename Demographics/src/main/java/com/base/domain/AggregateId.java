@@ -1,7 +1,7 @@
 /*
 @author Mahesh S
  */
-package com.domain.base;
+package com.base.domain;
 
 import java.io.Serializable;
 import java.util.UUID;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.domain.base;
+package com.base.domain;
 
 import java.lang.reflect.ParameterizedType;
 
