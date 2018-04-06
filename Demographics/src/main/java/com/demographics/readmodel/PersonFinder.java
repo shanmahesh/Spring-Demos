@@ -14,7 +14,7 @@ import com.demographics.application.api.dto.PersonDto;
  */
 public interface PersonFinder {
 	
-	List<PersonDto> getPersonList();
+	//List<PersonDto> getPersonList();
 	
 	PersonDto getPersonDetails(AggregateId personId); 
 	
