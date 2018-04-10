@@ -8,11 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.springframework.beans.BeanUtils;
+
 import com.base.domain.AggregateId;
 import com.base.domain.BaseAggregateRoot;
+import com.demographics.application.api.dto.PersonDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -26,6 +30,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Person extends BaseAggregateRoot{
 
@@ -43,4 +48,28 @@ public class Person extends BaseAggregateRoot{
 	public Person(AggregateId aggregateId) {
 		this.aggregateId = aggregateId;
 	}
+	
+	
+	public Person(PersonDto prsnDto) {
+		BeanUtils.copyProperties(prsnDto, this);
+		this.aggregateId = AggregateId.generate();
+		this.validate();
+		
+	}
+	
+	public void validate() {
+		
+	} 
+	
+	
+	public void updatePersonDetails(PersonDto personDto) {
+		BeanUtils.copyProperties(personDto, this);
+		this.validate();
+	}
+	
+	public boolean canDelete() {
+		//Validate
+		return true;
+	}
+	
 }

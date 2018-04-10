@@ -16,6 +16,8 @@ public interface PersonFinder {
 	
 	//List<PersonDto> getPersonList();
 	
-	PersonDto getPersonDetails(AggregateId personId); 
+	PersonDto getPersonDetails(AggregateId personId) throws Exception;
+	
+	List<PersonDto> getPersons() throws Exception; 
 	
 }

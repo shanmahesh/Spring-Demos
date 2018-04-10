@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 //@ComponentScan("com.domain.base")
+@ComponentScan(basePackages = { "com" })
 public class DemographicsApplication {
 
 	public static void main(String[] args) {

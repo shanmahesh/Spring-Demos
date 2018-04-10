@@ -5,6 +5,7 @@ package com.demographics.application.api.dto;
 
 import java.util.Date;
 
+import com.base.api.BaseDto;
 import com.base.domain.AggregateId;
 
 import lombok.AllArgsConstructor;
@@ -20,9 +21,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDto {
+public class PersonDto extends BaseDto{
 
-	private AggregateId prsnId;
+	private String prsnId;
 	private String firstName;
 	private String lastName;
 	private String midName;
