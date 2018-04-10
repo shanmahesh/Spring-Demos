@@ -1,29 +1,28 @@
-package com.demographics.domain;
+/**
+ * 
+ */
+package com.demographics.application.api.dto;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
 
-import  com.base.domain.BaseEntity;
+import com.base.api.BaseDto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
- * 
  * @author Mahesh S
  *
  */
-
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
-public class Address extends BaseEntity{
+public class AddressDto extends BaseDto{
 	
 	private String addrLine1;
 	private String addrLine2;
@@ -31,9 +30,5 @@ public class Address extends BaseEntity{
 	private String state;
 	private String zip;
 	public Date effectiveDate;
-	
-	public void validate() {
-		
-	}
 	
 }

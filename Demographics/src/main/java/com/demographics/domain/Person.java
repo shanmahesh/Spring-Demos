@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.base.domain.AggregateId;
 import com.base.domain.BaseAggregateRoot;
+import com.demographics.application.api.dto.AddressDto;
 import com.demographics.application.api.dto.PersonDto;
 
 import lombok.AllArgsConstructor;
@@ -70,6 +71,14 @@ public class Person extends BaseAggregateRoot{
 	public boolean canDelete() {
 		//Validate
 		return true;
+	}
+	
+	public void addAddress(AddressDto addressDto) {
+		
+		Address address = new Address();
+		BeanUtils.copyProperties(addressDto, address);
+		address.validate();
+		this.getAddress().add(address);
 	}
 	
 }
