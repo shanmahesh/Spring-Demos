@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -42,7 +43,7 @@ public class Person extends BaseAggregateRoot{
 	public Date dob;
 	
 
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL},orphanRemoval=true)
 	@JoinColumn(name = "prsn_id")
 	private Set<Address> address = new LinkedHashSet<>();
 	
@@ -80,5 +81,31 @@ public class Person extends BaseAggregateRoot{
 		address.validate();
 		this.getAddress().add(address);
 	}
+	
+	public void editAddress(AddressDto addressDto) {
+		
+		 Address addrSel = this.getAddress().stream()
+				 						 .filter(addr->addr.getEntityId().longValue() == addressDto.getAddrId().longValue())
+				 						 .findAny()
+				 						 .orElse(null)
+				 						 ;
+				
+		BeanUtils.copyProperties(addressDto, addrSel);
+		addrSel.validate();
+		//this.getAddress().add(address);
+	}
+	
+	
+	public void deleteAddress(AddressDto addressDto) {
+		
+		 
+		 this.getAddress().removeIf(addr->addr.getEntityId().longValue() == addressDto.getAddrId().longValue());
+				
+		
+		//addrSel.validate();
+		//this.getAddress().add(address);
+	}
+	
+	
 	
 }

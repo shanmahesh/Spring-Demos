@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.base.api.CommandGate;
 import com.base.domain.AggregateId;
+import com.demographics.application.api.command.AddAddressCommand;
 import com.demographics.application.api.command.AddPersonCommand;
+import com.demographics.application.api.command.DeleteAddressCommand;
 import com.demographics.application.api.command.DeletePersonCommand;
+import com.demographics.application.api.command.EditAddressCommand;
 import com.demographics.application.api.command.EditPersonCommand;
+import com.demographics.application.api.dto.AddressDto;
 import com.demographics.application.api.dto.PersonDto;
 import com.demographics.readmodel.PersonFinder;
 
@@ -90,6 +94,43 @@ private CommandGate gate;
 		gate.dispatch(personCommand);
 	return new ResponseEntity(HttpStatus.OK);
 	}
+	
+	
+	
+	@RequestMapping("/person/{prsnId}/addAddress")
+	public ResponseEntity addAddress(@PathVariable String prsnId,@RequestBody AddressDto addressDto) throws Exception{
+		
+		addressDto.setPrsnId(prsnId);
+		AddAddressCommand command = new AddAddressCommand(addressDto);
+			
+		addressDto = (AddressDto) gate.dispatch(command); 
+			return new ResponseEntity(addressDto,HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping("/person/{prsnId}/editAddress/{addrId}")
+	public ResponseEntity editAddress(@PathVariable String prsnId,@PathVariable Long addrId,@RequestBody AddressDto addressDto) throws Exception{
+		
+		addressDto.setPrsnId(prsnId);
+		addressDto.setAddrId(addrId);
+		EditAddressCommand command = new EditAddressCommand(addressDto);
+			
+		addressDto = (AddressDto) gate.dispatch(command); 
+			return new ResponseEntity(addressDto,HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping("/person/{prsnId}/deleteAddress/{addrId}")
+	public ResponseEntity deleteAddress(@PathVariable String prsnId,@PathVariable Long addrId,@RequestBody AddressDto addressDto) throws Exception{
+		
+		addressDto.setPrsnId(prsnId);
+		addressDto.setAddrId(addrId);
+		DeleteAddressCommand command = new DeleteAddressCommand(addressDto);
+			
+		addressDto = (AddressDto) gate.dispatch(command); 
+			return new ResponseEntity(addressDto,HttpStatus.OK);
+	}
+	
 	
 	
 }

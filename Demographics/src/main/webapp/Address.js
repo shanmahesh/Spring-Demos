@@ -1,7 +1,11 @@
-var app = angular.module('UserManagement', []);
+/**
+ * 
+ */
+
+var app = angular.module('Address', []);
 //alert("load..");
 //Controller Part
-app.controller('UserManagementController', function($scope, $http) {
+app.controller('AddressController', function($scope, $http) {
 
 	
     //Initialize page with default data which is blank in this example
@@ -24,7 +28,7 @@ app.controller('UserManagementController', function($scope, $http) {
         if ($scope.form.prsnId == -1) {
             //Id is absent so add person - POST operation
             method = "POST";
-            url = 'addPerson';
+            url = 'addAddress';
         } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
