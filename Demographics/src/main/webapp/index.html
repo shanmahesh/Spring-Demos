@@ -1,9 +1,12 @@
 <!doctype html>
-<html ng-app='UserManagement'>
+<html ng-app='CustomerManagement'>
  	<head>
 		<title>Hello AngularJS</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    	<script src="Person.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+		
+    	<script src="app.js"></script>
+    	<script src="CustomerControllers.js"></script>
 	
 
 	  <style>
@@ -21,11 +24,20 @@
             }
         </style>
  </head>
-    <body ng-app='UserManagement' ng-controller='UserManagementController'>
+ 
+ 
+  
+    <body ng-app='CustomerManagement' ng-controller='ListController'>
          <h1>
-           
+           <a href="#/list"> Search </a>
         </h1>
  
+ 
+ <div ng-app="CustomerManagement">
+		<ng-view></ng-view>
+	  </div>
+ 
+ <!-- 
         <table>
             <tr>
                 <th>First Name</th>
@@ -74,7 +86,7 @@
             
             
             
-        </form>
+        </form> -->
  
-    </body>
+    </body> 
 </html>
