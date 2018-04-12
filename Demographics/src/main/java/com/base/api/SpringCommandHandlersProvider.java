@@ -19,7 +19,7 @@ import com.base.api.RunEnvironment.HandlersProvider;
 
 
 @Component
-public class SpringHandlersProvider implements HandlersProvider, ApplicationListener<ContextRefreshedEvent> {
+public class SpringCommandHandlersProvider implements HandlersProvider, ApplicationListener<ContextRefreshedEvent> {
 
     @Inject
     private ConfigurableListableBeanFactory beanFactory;

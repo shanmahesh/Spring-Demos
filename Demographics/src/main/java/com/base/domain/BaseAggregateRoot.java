@@ -19,6 +19,7 @@
 package com.base.domain;
 
 
+import javax.inject.Inject;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -26,6 +27,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.springframework.context.annotation.Scope;
@@ -59,10 +61,12 @@ public abstract class BaseAggregateRoot {
 	@Enumerated(EnumType.ORDINAL)
 	private AggregateStatus aggregateStatus = AggregateStatus.ACTIVE;
 	
-	/*@Transient
+	@Transient
 	@Inject
-	protected DomainEventPublisher eventPublisher;
-	*/
+	protected EventPublisher eventPublisher;
+	
+	//private List<>
+	
 	
 	public void markAsRemoved() {
 		aggregateStatus = AggregateStatus.ARCHIVE;

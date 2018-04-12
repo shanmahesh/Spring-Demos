@@ -80,6 +80,7 @@ public class Person extends BaseAggregateRoot{
 		BeanUtils.copyProperties(addressDto, address);
 		address.validate();
 		this.getAddress().add(address);
+		
 	}
 	
 	public void editAddress(AddressDto addressDto) {
