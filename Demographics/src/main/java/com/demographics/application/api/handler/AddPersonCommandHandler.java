@@ -55,13 +55,16 @@ public PersonDto handle(AddPersonCommand personCommand) {
 	PersonEto personEto = new PersonEto();
 	BeanUtils.copyProperties(personCommand.getPersonDto(), personEto);
 	
+	ObjectMapper mapper = new ObjectMapper();	
 	PersonCreatedEvent event = new PersonCreatedEvent();
 	event.setPersonEto(personEto);
-	eventPublisher.publish(event);
-ObjectMapper mapper = new ObjectMapper();
+	
+	//eventPublisher.publish(event);
+
 	
 
 	try {
+		event.setDto(mapper.writeValueAsBytes(personEto));
 		kafkaProducer.send(mapper.writeValueAsString(event));
 	} catch (JsonProcessingException e) {
 		// TODO Auto-generated catch block
@@ -84,7 +87,7 @@ ObjectMapper mapper = new ObjectMapper();
 			PersonCreatedEvent event = mapper.readValue(content,PersonCreatedEvent.class);
 			System.out.println("Message Received event::: " + event.toString());
 			
-			PersonEto eto =  (PersonEto) event.getPersonEto();
+			PersonEto eto =  (PersonEto)  mapper.readValue(event.getDto(),PersonEto.class);
 			
 			System.out.println("Message Received ETO**::: " + eto.toString());
 			

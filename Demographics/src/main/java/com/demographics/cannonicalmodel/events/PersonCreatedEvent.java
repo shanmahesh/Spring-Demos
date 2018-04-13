@@ -23,4 +23,6 @@ import lombok.Setter;
 public class PersonCreatedEvent implements Serializable{
 	private Object personEto;
 
+	private byte[] dto;
+	
 }
