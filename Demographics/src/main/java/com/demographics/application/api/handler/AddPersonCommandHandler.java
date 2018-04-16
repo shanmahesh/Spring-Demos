@@ -13,6 +13,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import com.base.api.CommandHandler;
+import com.base.api.EventEnvelope;
 import com.base.domain.EventPublisher;
 import com.demographics.KafkaProducer;
 import com.demographics.application.api.command.AddPersonCommand;
@@ -55,21 +56,14 @@ public PersonDto handle(AddPersonCommand personCommand) {
 	PersonEto personEto = new PersonEto();
 	BeanUtils.copyProperties(personCommand.getPersonDto(), personEto);
 	
-	ObjectMapper mapper = new ObjectMapper();	
+
 	PersonCreatedEvent event = new PersonCreatedEvent();
-	event.setPersonEto(personEto);
-	
-	//eventPublisher.publish(event);
+	event.setEventName("PersonCreatedEvent");
+	event.setEventEto(personEto);
 
+	eventPublisher.publish(event);
+	//kafkaProducer.send(event);
 	
-
-	try {
-		event.setDto(mapper.writeValueAsBytes(personEto));
-		kafkaProducer.send(mapper.writeValueAsString(event));
-	} catch (JsonProcessingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	
 	return personCommand.getPersonDto();
 }
@@ -77,7 +71,7 @@ public PersonDto handle(AddPersonCommand personCommand) {
 	
 	
 	@KafkaListener(topics="${jsa.kafka.topic}")
-    public void processMessage1(String content) {
+    public void processMessage(String content) {
 		//log.info("received content = '{}'", content);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -87,7 +81,7 @@ public PersonDto handle(AddPersonCommand personCommand) {
 			PersonCreatedEvent event = mapper.readValue(content,PersonCreatedEvent.class);
 			System.out.println("Message Received event::: " + event.toString());
 			
-			PersonEto eto =  (PersonEto)  mapper.readValue(event.getDto(),PersonEto.class);
+			PersonEto eto =  (PersonEto)  mapper.readValue(event.getEventEto(),PersonEto.class);
 			
 			System.out.println("Message Received ETO**::: " + eto.toString());
 			

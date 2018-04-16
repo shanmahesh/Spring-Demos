@@ -1,11 +1,13 @@
 /**
  * 
  */
-package com.demographics.cannonicalmodel.publishedlanguage;
+package com.contact.cannonicalmodel.publishedlanguage;
+
+
 
 import java.util.Date;
 
-import com.base.api.BaseEto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PersonEto extends BaseEto{
+public class PersonEto {
 	private String prsnId;
 	private String firstName;
 	private String lastName;

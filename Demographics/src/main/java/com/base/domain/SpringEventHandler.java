@@ -7,15 +7,18 @@ import java.lang.reflect.Method;
 
 import org.springframework.beans.factory.BeanFactory;
 
+import lombok.Getter;
+
 /**
  * @author Mahesh S
  *
  */
+@Getter
 public class SpringEventHandler implements EventHandler {
-	 private final Class<?> eventType;
-	    private final String beanName;
-	    private final Method method;
-	    private final BeanFactory beanFactory;
+	 protected final Class<?> eventType;
+	 protected final String beanName;
+	 protected final Method method;
+	 protected final BeanFactory beanFactory;
 
 	    public SpringEventHandler(Class<?> eventType, String beanName, Method method, BeanFactory beanFactory) {
 	        this.eventType = eventType;

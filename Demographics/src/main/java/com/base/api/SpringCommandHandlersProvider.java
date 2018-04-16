@@ -1,6 +1,7 @@
 
 package com.base.api;
 
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -8,23 +9,28 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+
 import com.base.api.RunEnvironment.HandlersProvider;
-
-
 
 @Component
 public class SpringCommandHandlersProvider implements HandlersProvider, ApplicationListener<ContextRefreshedEvent> {
 
     @Inject
     private ConfigurableListableBeanFactory beanFactory;
+    
+   
 
     private Map<Class<?>, String> handlers = new HashMap<Class<?>, String>();
+    
+
+    
 
     @SuppressWarnings("unchecked")
 	@Override
@@ -50,6 +56,7 @@ public class SpringCommandHandlersProvider implements HandlersProvider, Applicat
                 throw new RuntimeException(e);
             }
         }
+        
     }
 
     private Class<?> getHandledCommandType(Class<?> clazz) {
@@ -69,4 +76,6 @@ public class SpringCommandHandlersProvider implements HandlersProvider, Applicat
         }
         throw new RuntimeException();
     }
+
+	
 }

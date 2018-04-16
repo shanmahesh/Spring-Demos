@@ -5,6 +5,7 @@ package com.demographics.application.api.listener;
 
 import org.springframework.stereotype.Component;
 
+import com.base.annotations.EventListener;
 import com.demographics.cannonicalmodel.events.PersonCreatedEvent;
 
 /**
@@ -15,9 +16,9 @@ import com.demographics.cannonicalmodel.events.PersonCreatedEvent;
 public class PersonCreatedListener {
 
 	
-	@com.base.annotations.EventListener(asynchronous = false)
+	@EventListener(asynchronous = false)
     public void handle(PersonCreatedEvent event) {
-		System.out.println(" ***** Person ETO ***** " + event.getPersonEto().toString());
+		System.out.println(" ***** Person ETO ***** " + event.getEventEto().toString());
 	}
 	
 	

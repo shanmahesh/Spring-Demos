@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.contact.api.dto.ContactDto;
 import com.contact.api.service.ContactServiceImpl;
-
+import com.contact.cannonicalmodel.publishedlanguage.EventEnvelope;
+import com.contact.cannonicalmodel.publishedlanguage.PersonEto;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -35,12 +38,16 @@ public class ContactRestController {
 	
 	
 	@KafkaListener(topics="${jsa.kafka.topic}")
-    public void processMessage1(String content) {
+	public void processMessage(String content) throws JsonParseException, JsonMappingException, IOException {
 		//log.info("received content = '{}'", content);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
-		System.out.println("Message Received event in contact *** ::: " + content);
+		
+		EventEnvelope ev = mapper.readValue(content, EventEnvelope.class);
+		PersonEto p = mapper.readValue(ev.getEventEto(), PersonEto.class);
+		
+		System.out.println(ev.toString() + "Message Received event in contact *** ::: " + p.toString());
 		
 		/*try {
 			

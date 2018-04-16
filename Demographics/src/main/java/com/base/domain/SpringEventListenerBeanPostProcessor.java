@@ -5,10 +5,13 @@ package com.base.domain;
 
 import java.lang.reflect.Method;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.base.annotations.EventListener;
@@ -23,10 +26,11 @@ import com.base.annotations.EventListener;
 public class SpringEventListenerBeanPostProcessor implements BeanPostProcessor, BeanFactoryAware {
 	private BeanFactory beanFactory;
     private EventPublisherImpl eventPublisher;
-
+    
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (!(bean instanceof SagaInstance)) {
+        	
             for (Method method : bean.getClass().getMethods()) {
             	EventListener listenerAnnotation = method.getAnnotation(EventListener.class);            	
                 
@@ -38,9 +42,9 @@ public class SpringEventListenerBeanPostProcessor implements BeanPostProcessor, 
                 
                 if (listenerAnnotation.asynchronous()){
                 	//TODO just a temporary fake impl
-                	//EventHandler handler = new AsynchronousEventHandler(eventType, beanName, method, beanFactory);
+                	EventHandler handler = new AsynchronousEventHandler(eventType, beanName, method, beanFactory);
                 	//TODO add to some queue
-                	//eventPublisher.registerEventHandler(handler);                	
+                	eventPublisher.registerEventHandler(handler);                	
                 }
                 else{                
                 	EventHandler handler = new SpringEventHandler(eventType, beanName, method, beanFactory);
@@ -62,4 +66,5 @@ public class SpringEventListenerBeanPostProcessor implements BeanPostProcessor, 
         this.beanFactory = beanFactory;
         eventPublisher = beanFactory.getBean(EventPublisherImpl.class);
     }
+    
 }

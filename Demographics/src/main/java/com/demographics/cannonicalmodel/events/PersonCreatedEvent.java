@@ -5,6 +5,8 @@ package com.demographics.cannonicalmodel.events;
 
 import java.io.Serializable;
 
+import com.base.annotations.Event;
+import com.base.api.EventEnvelope;
 import com.demographics.cannonicalmodel.publishedlanguage.PersonEto;
 
 import lombok.AllArgsConstructor;
@@ -18,11 +20,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class PersonCreatedEvent implements Serializable{
-	private Object personEto;
-
-	private byte[] dto;
-	
+@Event(asynchronous=true)
+public class PersonCreatedEvent extends EventEnvelope {
+		
 }
