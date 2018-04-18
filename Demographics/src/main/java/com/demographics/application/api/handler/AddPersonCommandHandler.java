@@ -24,6 +24,7 @@ import com.demographics.domain.Person;
 import com.demographics.domain.PersonFactory;
 import com.demographics.domain.PersonRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -76,6 +77,8 @@ public PersonDto handle(AddPersonCommand personCommand) {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
+			
+			mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 			
 			
 			PersonCreatedEvent event = mapper.readValue(content,PersonCreatedEvent.class);

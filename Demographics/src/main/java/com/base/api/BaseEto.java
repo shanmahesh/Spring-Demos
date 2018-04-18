@@ -3,10 +3,15 @@
  */
 package com.base.api;
 
+import java.io.Serializable;
+
+import lombok.NoArgsConstructor;
+
 /**
  * @author Mahesh S
  *
  */
-public class BaseEto {
+@NoArgsConstructor
+public class BaseEto implements Serializable{
 
 }

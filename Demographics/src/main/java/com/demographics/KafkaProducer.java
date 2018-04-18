@@ -38,7 +38,7 @@ public class KafkaProducer implements MessageProducer{
 		EventEnvelope eventEnvelope = (EventEnvelope) event;
 		
 		try {
-			kafkaTemplate.send(kafkaTopic,eventEnvelope.getId(), new ObjectMapper().writeValueAsString(eventEnvelope));
+			kafkaTemplate.send(kafkaTopic,eventEnvelope.getId(), new ObjectMapper().writeValueAsString(event));
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

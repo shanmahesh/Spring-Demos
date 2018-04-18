@@ -27,7 +27,7 @@ public class EventEnvelope implements Serializable{
 	
 	private String id;
 	private String eventName;
-	private byte[] eventEto;
+	private String eventEto;
 	
 	
 	

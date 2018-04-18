@@ -20,6 +20,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 @Event(asynchronous=true)
 public class PersonCreatedEvent extends EventEnvelope {
 		

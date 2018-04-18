@@ -37,7 +37,7 @@ public class ContactRestController {
 	
 	
 	
-	@KafkaListener(topics="${jsa.kafka.topic}")
+	//@KafkaListener(topics="${jsa.kafka.topic}")
 	public void processMessage(String content) throws JsonParseException, JsonMappingException, IOException {
 		//log.info("received content = '{}'", content);
 		

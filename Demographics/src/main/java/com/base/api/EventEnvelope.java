@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author Mahesh S
@@ -21,17 +22,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class EventEnvelope implements Serializable{
 	
 	private String id;
 	private String eventName;
-	private byte[] eventEto;
+	private String eventEto;
 	
+	public void setEventEto(String baseEto){
+		this.eventEto = baseEto;
+	}
 	
-	public void setEventEto(BaseEto baseEto){
+	public void setEventEto(Object baseEto){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			eventEto = mapper.writeValueAsBytes(baseEto);
+			eventEto = mapper.writeValueAsString(baseEto);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
